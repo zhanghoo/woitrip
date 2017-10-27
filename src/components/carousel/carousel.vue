@@ -3,15 +3,17 @@
 		<div class="carousel-container">
 		    <swiper :options="swiperOption">
 		    	<swiper-slide v-for="slide in swiperSlides" :key="slide.id">
-		    		<img class="bg" :src="slide.bg">
-		    		<h2 class="title">{{slide.title}}</h2>
-		    		<div class="detail">
-		    			<span class="icon"><icon name="map-marker"></icon></span>
-		    			<span>{{slide.destination}}</span>
-		    			&nbsp;&nbsp;
-		    			<span class="icon"><icon name="user"></icon></span>
-		    			<span>{{slide.author}}</span>
-		    		</div>
+			    	<a :href="slide.href" :title="slide.title">
+			    		<img class="bg" :src="slide.bg">
+			    		<h2 class="title">{{slide.title}}</h2>
+			    		<div class="detail">
+			    			<span class="icon"><icon name="map-marker"></icon></span>
+			    			<span>{{slide.destination}}</span>
+			    			&nbsp;&nbsp;
+			    			<span class="icon"><icon name="user"></icon></span>
+			    			<span>{{slide.author}}</span>
+			    		</div>
+			    	</a>
 		    	</swiper-slide>
 		    </swiper>
 		    <div class="swiper-pagination" slot="pagination"></div>
@@ -41,11 +43,13 @@ export default {
 	data() {
 		return {
 			swiperOption: {
-				autoplay: 3500,
-				setWrapperSize :true,
-				pagination: '.swiper-pagination',
-				paginationClickable: true,
-				mousewheelControl : true,
+				autoplay: 3500,	//自动播放
+				setWrapperSize :true,//开启这个设定会在Wrapper上添加等于slides相加的宽高
+				pagination: '.swiper-pagination', //分页
+				paginationClickable: true,//分页点点击
+				mousewheelControl : true,//鼠标滚动
+				preventDefault: false, //阻止默认点击, 如a标签:
+				preloadImages:false,   //默认提前加载所有图片
 			},
 			swiperSlides: []
 		}
@@ -58,21 +62,24 @@ export default {
 				title: '十月国庆, 趁着哪都人多我们去北疆啊',
 				destination: '禾木',
 				author: 'A0小金',
-				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg'
+				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg',
+				href: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg'
 			},
 			{
 				id: 1,
 				title: '国庆出游我就选北疆',
 				destination: '观鱼台',
 				author: 'A0小金',
-				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg'
+				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg',
+				href: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg'
 			},
 			{
 				id: 1,
 				title: '来喀纳斯看水怪',
 				destination: '喀纳斯',
 				author: 'A0小金',
-				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg'
+				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg',
+				href: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg'
 			}
 		]
 	},
