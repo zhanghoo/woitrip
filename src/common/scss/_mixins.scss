@@ -1,0 +1,7 @@
+/*单行文字溢出, 省略号样式*/
+@mixin text-ellipsis($width: 100%) {
+	width: $width;
+	white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

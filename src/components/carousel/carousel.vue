@@ -1,9 +1,21 @@
 <template>
 	<div class="carousel">
-	    <swiper :options="swiperOption">
-	    	<swiper-slide v-for="(slide, index) in swiperSlides" :key="index">I'm Slide {{index}}</swiper-slide>
-	    </swiper>
-	    <div class="swiper-pagination" slot="pagination"></div>
+		<div class="carousel-container">
+		    <swiper :options="swiperOption">
+		    	<swiper-slide v-for="slide in swiperSlides" :key="slide.id">
+		    		<img class="bg" :src="slide.bg">
+		    		<h2 class="title">{{slide.title}}</h2>
+		    		<div class="detail">
+		    			<span class="icon"><icon name="map-marker"></icon></span>
+		    			<span>{{slide.destination}}</span>
+		    			&nbsp;&nbsp;
+		    			<span class="icon"><icon name="user"></icon></span>
+		    			<span>{{slide.author}}</span>
+		    		</div>
+		    	</swiper-slide>
+		    </swiper>
+		    <div class="swiper-pagination" slot="pagination"></div>
+	    </div>
 	</div>
 </template>
 
@@ -12,11 +24,15 @@
  * SWIPER(SLIDES) COMPONENT FOR VUE.JS(1.X ~ 2.X)
  * 通过 npm install vue-awesome-swiper --save 安装,
  * https://github.com/surmon-china/vue-awesome-swiper
+ * 通过npm install vue-awesome --save 安装, 引入
+ * 有关vue-awesomen介绍可见: https://github.com/Justineo/vue-awesome
 */
 require('swiper/dist/css/swiper.css')
+import 'vue-awesome/icons'
 
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import icon from 'vue-awesome/components/Icon'
 
 Vue.use(VueAwesomeSwiper)
 
@@ -31,13 +47,112 @@ export default {
 				paginationClickable: true,
 				mousewheelControl : true,
 			},
-			swiperSlides: [1, 2, 3]
+			swiperSlides: []
 		}
+	},
+	created() {
+		//接收数据
+		this.swiperSlides = [
+			{
+				id: 0,
+				title: '十月国庆, 趁着哪都人多我们去北疆啊',
+				destination: '禾木',
+				author: 'A0小金',
+				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg'
+			},
+			{
+				id: 1,
+				title: '国庆出游我就选北疆',
+				destination: '观鱼台',
+				author: 'A0小金',
+				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg'
+			},
+			{
+				id: 1,
+				title: '来喀纳斯看水怪',
+				destination: '喀纳斯',
+				author: 'A0小金',
+				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg'
+			}
+		]
+	},
+	components: {
+		icon
 	}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style rel="stylesheet/scss" lang="scss" scoped>
+@import "../../common/scss/mixins";
+
+.carousel {
+	position: relative;
+	height: 0;
+	padding-top: 40%;
+	.carousel-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		.swiper-container {
+			height: 100%;
+			.swiper-wrapper {
+				.swiper-slide {
+					position: relative;
+					.title {
+						position: absolute;
+						bottom: 45px;
+						left: 10px;
+						@include text-ellipsis(60%);
+						height: 16px;
+						line-height: 16px;
+						font-size: 16px;
+						color: #fff;
+						text-shadow: 0 1px 3px rgba(118,118,118,.9);
+					}
+					.detail {
+						position: absolute;
+						bottom: 30px;
+						left: 10px;
+						height: 10px;
+						line-height: 10px;
+						font-size: 10px;
+						color: #fff;
+						text-shadow: 0 1px 3px rgba(118,118,118,.9);
+						.icon {
+							position: relative;
+							top: 1px;
+							left: 1px;
+							.fa-icon {
+								height: 10px;
+							}
+						}
+					}
+					.bg {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
+		}
+		.swiper-pagination {
+			bottom: 15px;
+			right: 15px;
+			.swiper-pagination-bullet {
+				position: relative;
+				&.swiper-pagination-bullet-active {
+					/*这里为什么不生效了, 暂只在swiper.css里修改了*/
+					width: 16px;
+					border-radius: 4px;
+				}
+			}
+		}
+	}
+}
 
 </style>
