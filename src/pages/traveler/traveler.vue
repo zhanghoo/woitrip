@@ -1,20 +1,19 @@
 <template>
-	<div class="message">
-		消息
+	<div class="traveler">
+		traveler
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'message'
+	name: 'traveler'
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "../../common/scss/index";
-.message {
+.traveler {
 	@include init-position();
-	padding-bottom: 50px; /*这里的padding-bottom, 根据app.vue nav-box的高设定*/
 }
 </style>

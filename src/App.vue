@@ -3,21 +3,35 @@
 		<div class="nav-box">
 		    <div class="nav">
 		    	<div class="nav-item">
-		    		<router-link to="/index">首页</router-link>
+		    		<router-link to="/index">
+		    			<span class="icon"><icon name="home" scale="1.5"></icon></span>
+		    			<p class="text">首页</p>
+		    	</router-link>
 		    	</div>
 		    	<div class="nav-item">
-		    		<router-link to="/destination">目的地</router-link>
+		    		<router-link to="/destination">
+		    			<span class="icon"><icon name="map-marker" scale="1.5"></icon></span>
+		    			<p class="text">目的地</p>
+		    	</router-link>
 		    	</div>
 		    	<div class="nav-item">
-		    		<router-link to="/message">消息</router-link>
+		    		<router-link to="/message">
+		    			<span class="icon"><icon name="comment-o" scale="1.5"></icon></span>
+		    			<p class="text">消息</p>
+		    	</router-link>
 		    	</div>
 		    	<div class="nav-item">
-		    		<router-link to="/home">我的</router-link>
+		    		<router-link to="/home">
+		    			<span class="icon"><icon name="user" scale="1.5"></icon></span>
+		    			<p class="text">我的</p>
+		    	</router-link>
 		    	</div>
 		    </div>
 		</div>
 		<div class="content">
-			<router-view></router-view>
+			<transition name="slide-fade">
+				<router-view></router-view>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -28,9 +42,13 @@
  * 有关normalize.css介绍可见: http://jerryzou.com/posts/aboutNormalizeCss/
 */
 import 'normalize.css'
+import icon from 'vue-awesome/components/Icon'
 
 export default {
-	name: 'app'
+	name: 'app',
+	components: {
+		icon
+	}
 }
 </script>
 
@@ -50,12 +68,15 @@ export default {
 		.nav {
 			display: flex;
 			width: 100%;
-			height: 40px;
-			line-height: 40px;
+			height: 50px;
+			font-size: 14px;
 			.nav-item {
 				flex: 1;
 				text-align: center;
 				a {
+					display: block;
+					position: relative;
+					top: 5px;
 					color: #999;
 					&.active {
 						color: $mainColor;
@@ -65,7 +86,19 @@ export default {
 		}
 	}
 	.content {
-		padding-bottom: 40px; /*这里的padding-bottom, 根据nav-box的高设定*/
+		position: relative;
+		.slide-fade-enter-active {
+			position: absolute;
+			transition: all .3s ease;
+		}
+		.slide-fade-leave-active {
+			position: absolute;
+			transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-to{
+			transform: translateX(10px);
+			opacity: 0;
+		}
 	}
 }
 
