@@ -7,7 +7,9 @@
 			<div class="slide-bar" :class="{'click': navOpt === 0}" ref="slideBar"></div>
 		</div>
 		<div class="content">
-			<articlepanel></articlepanel>
+			<template v-for="article in articleList">
+				<articlepanel :article="article"></articlepanel>
+			</template>
 		</div>
 	</div>
 </template>
@@ -18,6 +20,7 @@
 */
 import BScroll from 'better-scroll'
 import articlepanel from '@/components/articlepanel/articlepanel'
+import axios from 'axios';
 
 export default {
 	name: 'articlelist',
@@ -34,16 +37,21 @@ export default {
 			navOnIndex: 0,
 			hiddenPosX: 0, //nav 移动到左侧隐藏的位置
 			navOpt: 0, //nav 是 0 点击 还是 1 滑动
+			articleList: [],
 		}
 	},
 	created() {
 		//接收数据
-		this.$nextTick(() => {
-			this._initScroll();
-		});
+		axios.get('static/data.json').then((res) => {
+			this.articleList = res.data.articles;
+			this.$nextTick(() => {
+				this._initNavScroll();
+			});
+		})
+		
 	},
 	methods: {
-		_initScroll() {
+		_initNavScroll() {
 			if(this.navScroll) {
 	    		return
 	    	}
