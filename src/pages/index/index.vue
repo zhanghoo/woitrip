@@ -62,7 +62,9 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="article-wrapper">
+			<articlelist></articlelist>
+		</div>
 	</div>
 </template>
 
@@ -70,13 +72,15 @@
 import carousel from '@/components/carousel/carousel'
 import search from '@/components/search/search'
 import icon from 'vue-awesome/components/Icon'
+import articlelist from '@/components/articlelist/articlelist'
 
 export default {
 	name: 'index',
 	components: {
 		carousel,
 		search,
-		icon
+		icon,
+		articlelist
 	}
 }
 </script>
@@ -100,6 +104,8 @@ export default {
 		}
 	}
 	.nav-wrapper {
+		margin-bottom: 10px;
+		background-color: $panelColor;
 		.nav-row {
 			display: flex;
 			.nav-item {
@@ -139,6 +145,9 @@ export default {
 				}
 			}
 		}
+	}
+	.article-wrapper {
+		background-color: $panelColor;
 	}
 }
 </style>

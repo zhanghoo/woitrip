@@ -64,7 +64,7 @@ export default {
 	    left: 0;
 	    width: 100%;
 		z-index: 999;
-		background-color: $bgColor;
+		background-color: $panelColor;
 		.nav {
 			display: flex;
 			width: 100%;
