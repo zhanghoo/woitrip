@@ -57,7 +57,7 @@ export default {
 
 .app {
 	width: 100%;
-	min-height: 100px;
+	height: 100%;
 	.nav-box {
 	    position: fixed;
 	    bottom: 0;
@@ -87,6 +87,8 @@ export default {
 	}
 	.content {
 		position: relative;
+		width: 100%;
+		height: 100%;
 		.slide-fade-enter-active {
 			position: absolute;
 			transition: all .3s ease;

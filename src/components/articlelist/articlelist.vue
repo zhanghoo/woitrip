@@ -7,7 +7,7 @@
 			<div class="slide-bar" :class="{'click': navOpt === 0}" ref="slideBar"></div>
 		</div>
 		<div class="content">
-			<template v-for="article in articleList">
+			<template v-for="article in articles">
 				<articlepanel :selectedType="selectedType" :article="article"></articlepanel>
 			</template>
 		</div>
@@ -20,7 +20,6 @@
 */
 import BScroll from 'better-scroll'
 import articlepanel from '@/components/articlepanel/articlepanel'
-import axios from 'axios';
 
 const RECOMMEND = 'recommend';
 const HOT = 'hot';
@@ -33,6 +32,11 @@ const AROUND = 'around';
 
 export default {
 	name: 'articlelist',
+	props: {
+		articles: {
+			type: Array
+		}
+	},
 	data() {
 		return {
 			navItem: [{id: 0, type: 'recommend', name: '推荐'},
@@ -52,12 +56,9 @@ export default {
 	},
 	created() {
 		//接收数据
-		axios.get('static/data.json').then((res) => {
-			this.articleList = res.data.articles;
-			this.$nextTick(() => {
-				this._initNavScroll();
-			});
-		})
+		this.$nextTick(() => {
+			this._initNavScroll();
+		});
 	},
 	methods: {
 		_initNavScroll() {

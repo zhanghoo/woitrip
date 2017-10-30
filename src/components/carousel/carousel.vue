@@ -2,7 +2,7 @@
 	<div class="carousel">
 		<div class="carousel-container">
 		    <swiper :options="swiperOption">
-		    	<swiper-slide v-for="slide in swiperSlides" :key="slide.id">
+		    	<swiper-slide v-for="slide in carousels" :key="slide.id">
 			    	<a :href="slide.href" :title="slide.title">
 			    		<img class="bg" :src="slide.bg">
 			    		<h2 class="title">{{slide.title}}</h2>
@@ -35,12 +35,16 @@ import 'vue-awesome/icons'
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import icon from 'vue-awesome/components/Icon'
-import axios from 'axios';
 
 Vue.use(VueAwesomeSwiper)
 
 export default {
 	name: 'carousel',
+	props: {
+		carousels: {
+			type: Array
+		}
+	},
 	data() {
 		return {
 			swiperOption: {
@@ -54,12 +58,6 @@ export default {
 			},
 			swiperSlides: []
 		}
-	},
-	created() {
-		//接收数据
-		axios.get('static/data.json').then((res) => {
-			this.swiperSlides = res.data.carousels;
-		})
 	},
 	components: {
 		icon
