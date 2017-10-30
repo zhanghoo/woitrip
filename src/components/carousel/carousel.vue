@@ -35,6 +35,7 @@ import 'vue-awesome/icons'
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import icon from 'vue-awesome/components/Icon'
+import axios from 'axios';
 
 Vue.use(VueAwesomeSwiper)
 
@@ -56,32 +57,9 @@ export default {
 	},
 	created() {
 		//接收数据
-		this.swiperSlides = [
-			{
-				id: 0,
-				title: '十月国庆, 趁着哪都人多我们去北疆啊',
-				destination: '禾木',
-				author: 'A0小金',
-				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg',
-				href: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg'
-			},
-			{
-				id: 1,
-				title: '国庆出游我就选北疆',
-				destination: '观鱼台',
-				author: 'A0小金',
-				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg',
-				href: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg'
-			},
-			{
-				id: 1,
-				title: '来喀纳斯看水怪',
-				destination: '喀纳斯',
-				author: 'A0小金',
-				bg: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg',
-				href: 'http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg'
-			}
-		]
+		axios.get('static/data.json').then((res) => {
+			this.swiperSlides = res.data.carousels;
+		})
 	},
 	components: {
 		icon

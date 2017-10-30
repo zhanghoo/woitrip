@@ -2,13 +2,13 @@
 	<div class="articlelist">
 		<div class="nav-wrapper" ref="navWrapper">
 			<ul class="nav clearfix" ref="navList">
-				<li class="nav-item nav-item-hook" :class="{'on': navOnIndex === index}" v-for="(item, index) in navItem" :key="item.id" @click="selectType(index, $event)">{{item.name}}</li>
+				<li class="nav-item nav-item-hook" :class="{'on': navOnIndex === index}" v-for="(item, index) in navItem" :key="item.id" @click="selectType(index, $event)" :data-type="item.type">{{item.name}}</li>
 			</ul>
 			<div class="slide-bar" :class="{'click': navOpt === 0}" ref="slideBar"></div>
 		</div>
 		<div class="content">
 			<template v-for="article in articleList">
-				<articlepanel :article="article"></articlepanel>
+				<articlepanel :selectedType="selectedType" :article="article"></articlepanel>
 			</template>
 		</div>
 	</div>
@@ -21,6 +21,15 @@
 import BScroll from 'better-scroll'
 import articlepanel from '@/components/articlepanel/articlepanel'
 import axios from 'axios';
+
+const RECOMMEND = 'recommend';
+const HOT = 'hot';
+const LATEST = 'latest';
+const SEASONAL = 'seasonal';
+const DOMESTIC = 'domestic';
+const ABROAD = 'abroad';
+const THEME = 'theme';
+const AROUND = 'around';
 
 export default {
 	name: 'articlelist',
@@ -38,6 +47,7 @@ export default {
 			hiddenPosX: 0, //nav 移动到左侧隐藏的位置
 			navOpt: 0, //nav 是 0 点击 还是 1 滑动
 			articleList: [],
+			selectedType: RECOMMEND
 		}
 	},
 	created() {
@@ -48,7 +58,6 @@ export default {
 				this._initNavScroll();
 			});
 		})
-		
 	},
 	methods: {
 		_initNavScroll() {
@@ -90,6 +99,7 @@ export default {
 			this.navOpt = 0;//nav 点击操作
 			//根据 当前nav on 设置 slide-bar 的位置 和宽
 			let navList = this.$refs.navList.getElementsByClassName('nav-item-hook');
+			this.selectedType = navList[index].getAttribute('data-type');
 			this.setSlideBarStyle(navList[index]);
 		},
 		setSlideBarStyle(navOnTarget) {

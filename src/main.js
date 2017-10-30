@@ -13,6 +13,11 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
+	data: {
+		//将在各处使用该事件中心
+		//组件通过它来通信
+		eventHub: new Vue()
+	},
 	render: h => h(App),
 	router,
 	template: '<App/>',

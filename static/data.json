@@ -1,44 +1,164 @@
 {
-	"articles": [
-			{
-				"id": 0,
-				"title": "十月国庆, 趁着哪都人多我们去北疆啊",
-				"bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg",
-				"category": "游记",
-				"categoryEN": "travelogs",
-				"tag": ["recommend", "seasonal", "domestic"],
-				"survey": "这是一个关于七个小矮人的故事",
-				"author": "请叫我野驴一枚",
-				"date": "2017-10-30",
-				"avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
-				"follow": 0,
-				"collect": 0,
-				"interest": 0,
-				"report": 0,
-				"pageviews": 1000,
-				"collection": 200,
-				"repeat": 100,
-				"likes": 230
-			},
-			{
-				"id": 1,
-				"title": "十月国庆, 趁着哪都人多我们去北疆啊",
-				"bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg",
-				"category": "游记",
-				"categoryEN": "travelogs",
-				"tag": ["recommend", "seasonal", "domestic"],
-				"survey": "这是一个关于七个小矮人的故事",
-				"author": "zhanghoo",
-				"date": "2017-10-30",
-				"avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
-				"follow": 0,
-				"collect": 0,
-				"interest": 0,
-				"report": 0,
-				"pageviews": 1000,
-				"collection": 200,
-				"repeat": 100,
-				"likes": 230
-			}
-		]
+    "carousels": [
+        {
+            "id": 0,
+            "title": "十月国庆, 趁着哪都人多我们去北疆啊",
+            "destination": "禾木",
+            "author": "A0小金",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg",
+            "href": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg"
+        },
+        {
+            "id": 1,
+            "title": "国庆出游我就选北疆",
+            "destination": "观鱼台",
+            "author": "A0小金",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg",
+            "href": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg"
+        },
+        {
+            "id": 1,
+            "title": "来喀纳斯看水怪",
+            "destination": "喀纳斯",
+            "author": "A0小金",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg",
+            "href": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg0.jpg"
+        }
+    ],
+    "articles": [
+        {
+            "id": 0,
+            "title": "十月国庆, 趁着哪都人多我们去北疆啊",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg4.jpg",
+            "category": "游记",
+            "categoryEN": "travelogs",
+            "tag": [
+                "recommend",
+                "seasonal",
+                "domestic"
+            ],
+            "survey": "这是一个关于七个小矮人的故事",
+            "author": "请叫我野驴一枚",
+            "date": "2017-10-30",
+            "avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+            "follow": 0,
+            "collect": 0,
+            "interest": 0,
+            "report": 0,
+            "pageviews": 1000,
+            "collection": 200,
+            "repeat": 100,
+            "likes": 230
+        },
+        {
+            "id": 1,
+            "title": "我们在北疆相遇",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg",
+            "category": "攻略",
+            "categoryEN": "guide",
+            "tag": [
+                "latest"
+            ],
+            "survey": "hello~~",
+            "author": "zhanghoo",
+            "date": "2017-10-30",
+            "avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+            "follow": 0,
+            "collect": 0,
+            "interest": 0,
+            "report": 0,
+            "pageviews": 1000,
+            "collection": 200,
+            "repeat": 100,
+            "likes": 230
+        },
+        {
+            "id": 2,
+            "title": "我们在北疆相遇",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg3.jpg",
+            "category": "问答",
+            "categoryEN": "aq",
+            "tag": [
+                "recommend"
+            ],
+            "survey": "hello~~",
+            "author": "woitrip",
+            "date": "2017-10-30",
+            "avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+            "follow": 0,
+            "collect": 0,
+            "interest": 0,
+            "report": 0,
+            "pageviews": 1000,
+            "collection": 200,
+            "repeat": 100,
+            "likes": 230
+        },
+        {
+            "id": 3,
+            "title": "我们在北疆相遇",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg",
+            "category": "攻略",
+            "categoryEN": "guide",
+            "tag": [
+                "latest"
+            ],
+            "survey": "hello~~",
+            "author": "zhanghoo",
+            "date": "2017-10-30",
+            "avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+            "follow": 0,
+            "collect": 0,
+            "interest": 0,
+            "report": 0,
+            "pageviews": 1000,
+            "collection": 200,
+            "repeat": 100,
+            "likes": 230
+        },
+        {
+            "id": 4,
+            "title": "我们在北疆相遇",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg",
+            "category": "攻略",
+            "categoryEN": "guide",
+            "tag": [
+                "latest"
+            ],
+            "survey": "hello~~",
+            "author": "zhanghoo",
+            "date": "2017-10-30",
+            "avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+            "follow": 0,
+            "collect": 0,
+            "interest": 0,
+            "report": 0,
+            "pageviews": 1000,
+            "collection": 200,
+            "repeat": 100,
+            "likes": 230
+        },
+        {
+            "id": 5,
+            "title": "我们在北疆相遇",
+            "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/resourceImg/rimg2.jpg",
+            "category": "攻略",
+            "categoryEN": "guide",
+            "tag": [
+                "recommend"
+            ],
+            "survey": "hello~~",
+            "author": "zhanghoo",
+            "date": "2017-10-30",
+            "avatar": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+            "follow": 0,
+            "collect": 0,
+            "interest": 0,
+            "report": 0,
+            "pageviews": 1000,
+            "collection": 200,
+            "repeat": 100,
+            "likes": 230
+        }
+    ]
 }

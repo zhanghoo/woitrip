@@ -1,21 +1,19 @@
 <template>
-	<div class="articlepanel">
+	<div v-show="showFlag" class="articlepanel">
 		<div class="header">
 			<img class="bg" :src="article.bg">
 			<span class="category">{{article.category}}</span>
-			<div class="opt-wrapper">
-				<span class="icon" @click="menuToggle"><icon name="ellipsis-h"></icon></span>
-				<transition name="drop-fade">
-					<div class="menu-list" v-show="showFlag">
-						<ul class="menu clearfix">
-							<li class="menu-item">分享</li>
-							<li class="menu-item">收藏</li>
-							<li class="menu-item">不感兴趣</li>
-							<li class="menu-item">举报</li>
-						</ul>
-					</div>
-				</transition>
-			</div>
+			<el-dropdown trigger="click" @command="handleCommand">
+				<span class="el-dropdown-link">
+					<i class="el-icon-arrow-down el-icon--right"></i>
+				</span>
+				<el-dropdown-menu slot="dropdown">
+					<el-dropdown-item command="share">分享</el-dropdown-item>
+					<el-dropdown-item command="collect">收藏</el-dropdown-item>
+					<el-dropdown-item command="interest">不感兴趣</el-dropdown-item>
+					<el-dropdown-item command="report">举报</el-dropdown-item>
+				</el-dropdown-menu>
+			</el-dropdown>
 		</div>
 		<div class="detail">
 			<div class="title">{{article.title}}</div>
@@ -33,24 +31,38 @@
 <script>
 import icon from 'vue-awesome/components/Icon'
 
+const RECOMMEND = 'recommend';
+const HOT = 'hot';
+const LATEST = 'latest';
+const SEASONAL = 'seasonal';
+const DOMESTIC = 'domestic';
+const ABROAD = 'abroad';
+const THEME = 'theme';
+const AROUND = 'around';
+
 export default {
 	name: 'articlepanel',
 	props: {
 		article: {
 			type: Object
+		},
+		selectedType: {
+			type: String,
+			default: RECOMMEND
 		}
 	},
-	data() {
-		return {
-			showFlag: false
+	computed: {
+		showFlag() {
+			return this.article.tag.some(this.inArticleTag);
 		}
-	},
-	created() {
 	},
 	methods: {
-		menuToggle() {
-			this.showFlag = !this.showFlag;
-		}
+		handleCommand(command) {
+	    	console.log('click on item ' + command);
+        },
+        inArticleTag(tag) {
+        	return tag == this.selectedType;
+        }
 	},
 	components: {
 		icon
@@ -93,64 +105,11 @@ export default {
 			background-color: rgba(118, 118, 118, 0.08);
 			box-shadow: 0 1px 3px rgba(118, 118, 118, 0.2);
 		}
-		.opt-wrapper {
+		.el-dropdown {
 			position: absolute;
-			top: 0px;
-			right: 5px;
-			.icon {
-				display: block;
-				padding-top: 8px;
-				width: 28px;
-				height: 22px;
-				color: #fff;
-				text-align: center;
-			}
-			.menu-list {
-			    position: absolute;
-			    top: 100%;
-			    right: 5px;
-				.menu {
-					position: absolute;
-				    top: 100%;
-				    right: 0;
-				    z-index: 970;
-				    float: left;
-				    min-width: 160px;
-				    padding: 5px 0;
-				    margin: 2px 0 0;
-				    background-color: #fff;
-				    background-clip: padding-box;
-				    border: 1px solid #ccc;
-				    border: 1px solid rgba(0,0,0,.15);
-				    border-radius: 3px;
-				    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-					.menu-item {
-						display: block;
-					    padding: 3px 20px;
-					    clear: both;
-					    font-weight: 400;
-					    line-height: 1.42857143;
-					    color: #333;
-					    white-space: nowrap;
-					    &:active {
-					    	outline: 0;
-					    	background-color: #e6e6e6;
-							box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-					    }
-					}
-				}
-
-				&.drop-fade-enter-active {
-					transition: top .1s ease;
-				}
-				&.drop-fade-leave-active {
-					transition: opacity .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-				}
-				&.drop-fade-enter, &.drop-fade-leave-to{
-					top: 50%;
-					opacity: 0;
-				}
-			}
+			top: 10px;
+			right: 10px;
+			color: #fff;
 		}
 	}
 	.detail {
