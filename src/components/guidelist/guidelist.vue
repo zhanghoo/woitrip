@@ -3,16 +3,16 @@
 		<div class="hot-guide border-1px">
 			<h2 class="title">热门攻略</h2>
 			<div class="content" ref="guideWrapper">
-				<ul class="hot-list clearfix" ref="hotList">
-					<li class="item item-hook" v-for="hotGuide in hotGuides">
+				<swiper :options="swiperOption" class="hot-list clearfix" ref="hotList">
+					<swiper-slide v-for="(hotGuide,index) in hotGuides" class="item item-hook" :key="index">
 						<div class="img"><img :src="hotGuide.bg"></div>
 						<h3 class="title">{{hotGuide.title}}</h3>
 						<p class="count">
 							<span><icon name="map-marker" scale="0.6"></icon>{{hotGuide.destination}}</span>
 							<span><icon name="eye" scale="0.6"></icon>{{hotGuide.pageviews}}</span>
 						</p>
-					</li>
-				</ul>
+					</swiper-slide>
+				</swiper>
 			</div>
 		</div>
 		<div class="all-guide">
@@ -49,34 +49,36 @@ export default {
 		return {
 			hotGuides: [],
 			allGuides: [],
+			swiperOption: {
+				slidesPerView: 5,
+          		spaceBetween: 50,
+				breakpoints: {
+					1024: {
+						slidesPerView: 4,
+						spaceBetween: 40
+					},
+					768: {
+						slidesPerView: 3,
+						spaceBetween: 30
+					},
+					640: {
+						slidesPerView: 2,
+						spaceBetween: 20
+					},
+					320: {
+						slidesPerView: 1,
+						spaceBetween: 10
+					}
+				}
+			}
 		}
 	},
 	created() {
 		this.hotGuides = this.guide.list.hot;
 		this.allGuides = this.guide.list.all;
-		this.$nextTick(() => {
-			this._initHotScroll();
-		});
 	},
 	methods: {
-		_initHotScroll() {
-			if(this.hotScroll) {
-	    		return
-	    	}
-	    	//计算nav item 总宽
-	    	let hotList = [...this.$refs.hotList.getElementsByClassName('item-hook')];
-	    	let hotWidth = 0;
-	    	for(let item in hotList) {
-	    		hotWidth += hotList[item].offsetWidth;
-	    	}
-
-	    	//设置nav 的 宽
-	    	this.$refs.hotList.style.width = hotWidth + 1 + 'px';
-			this.hotScroll = new BScroll(this.$refs.guideWrapper, {
-				scrollX: true,
-				eventPassthrough: 'vertical',
-			});
-		}
+		
 	},
 	components: {
 		icon
@@ -102,11 +104,8 @@ export default {
 			width: 100%;
 			.hot-list {
 				width: 100%;
+				overflow: hidden;
 				.item {
-					position: relative;
-					float: left;
-					width: 200px;
-					padding-right: 10px;
 					.img {
 						position: relative;
 						padding-top: 60%;

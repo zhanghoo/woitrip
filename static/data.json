@@ -256,6 +256,14 @@
                         "destination": "北京",
                         "pageviews": 1000,
                         "guidesNum": 230
+                    },
+                    {
+                        "id": 6,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
                     }
                 ]
             }

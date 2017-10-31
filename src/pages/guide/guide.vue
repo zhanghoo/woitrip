@@ -7,9 +7,11 @@
 			<slidenavbar :navItem="navItem"></slidenavbar>
 		</div>
 		<div class="content">
-			<template v-for="guide in guides">
-				<guidelist :guide="guide"></guidelist>
-			</template>
+			<swiper :options="swiperOption">
+				<swiper-slide v-for="guide in guides" :key="guide.id">
+					<guidelist :guide="guide"></guidelist>
+				</swiper-slide>
+			</swiper>
 		</div>
 	</div>
 </template>
@@ -33,7 +35,10 @@ export default {
 					  {id: 5, type: 'Oceania', name: '大洋洲'},
 					  {id: 6, type: 'Africa', name: '非洲'},
 					  {id: 7, type: 'SouthAmerica', name: '南美洲'}],
-			guides: {}
+			guides: {},
+			swiperOption: {
+				autoHeight: true
+			}
 		}
 	},
 	created() {
