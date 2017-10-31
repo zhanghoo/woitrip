@@ -1,6 +1,6 @@
 <template>
-	<div class="articlelist">
-		<div class="nav-wrapper" ref="navWrapper">
+	<div class="articlelist articlelist-hook">
+		<div class="nav-wrapper nav-book" ref="navWrapper">
 			<ul class="nav clearfix" ref="navList">
 				<li class="nav-item nav-item-hook" :class="{'on': navOnIndex === index}" v-for="(item, index) in navItem" :key="item.id" @click="selectType(index, $event)" :data-type="item.type">{{item.name}}</li>
 			</ul>
@@ -20,6 +20,7 @@
 */
 import BScroll from 'better-scroll'
 import articlepanel from '@/components/articlepanel/articlepanel'
+import $ from 'jquery'
 
 const RECOMMEND = 'recommend';
 const HOT = 'hot';
@@ -59,6 +60,16 @@ export default {
 		this.$nextTick(() => {
 			this._initNavScroll();
 		});
+		//监听当前实例上自定义事件 articlelist.navSlide.addTop
+		this.$root.eventHub.$on('articlelist.navSlide.addTop', (top) => {
+			console.log(`addTop--${top}`);
+			$('.articlelist-hook').addClass('top');
+			$('.nav-book').css('top', `${top}px`);
+		});
+		this.$root.eventHub.$on('articlelist.navSlide.removeTop', (top) => {
+			$('.articlelist-hook').removeClass('top');
+			$('.nav-book').css('top', `${top}px`);
+		});
 	},
 	methods: {
 		_initNavScroll() {
@@ -80,7 +91,7 @@ export default {
 			});
 
 			//根据 当前nav on 设置 slide-bar 的位置 和宽
-			this.setSlideBarStyle(navList[0]);
+			this._setSlideBarStyle(navList[0]);
 
 			//绑定scroll
 			this.navScroll.on('scroll', (pos) => {
@@ -88,12 +99,19 @@ export default {
 				this.hiddenPosX = Math.round(pos.x);
 				//根据 当前nav on 设置 slide-bar 的位置 和宽
 				let navList = this.$refs.navList.getElementsByClassName('nav-item-hook');
-				this.setSlideBarStyle(navList[this.navOnIndex]);
+				this._setSlideBarStyle(navList[this.navOnIndex]);
 			});
 			//滑动结束后 初始为点击操作
 			this.navScroll.on('scrollEnd', () => {
 				this.navOpt = 0;//nav 点击操作
 			});
+		},
+		_setSlideBarStyle(navOnTarget) {
+			if(!navOnTarget) {
+				return;
+			}
+			this.$refs.slideBar.style.width = `${navOnTarget.offsetWidth}px`;
+			this.$refs.slideBar.style.left = `${this.hiddenPosX + navOnTarget.offsetLeft}px`;
 		},
 		selectType(index, event) {
 			this.navOnIndex = index;
@@ -101,15 +119,8 @@ export default {
 			//根据 当前nav on 设置 slide-bar 的位置 和宽
 			let navList = this.$refs.navList.getElementsByClassName('nav-item-hook');
 			this.selectedType = navList[index].getAttribute('data-type');
-			this.setSlideBarStyle(navList[index]);
+			this._setSlideBarStyle(navList[index]);
 		},
-		setSlideBarStyle(navOnTarget) {
-			if(!navOnTarget) {
-				return;
-			}
-			this.$refs.slideBar.style.width = navOnTarget.offsetWidth + 'px';
-			this.$refs.slideBar.style.left = (this.hiddenPosX + navOnTarget.offsetLeft) + 'px';
-		}
 	},
 	components: {
 		articlepanel
@@ -122,12 +133,22 @@ export default {
 @import "../../common/scss/index";
 
 .articlelist {
+	position: relative;
+	&.top {
+		.nav-wrapper {
+			position: fixed;
+			top: 0;
+			z-index: 980;
+		}
+		padding-top: 36px; /*这个视 nav-wrapper 的height 而定*/
+	}
 	.nav-wrapper {
 		position: relative;
 		width: 100%;
 		height: 36px;
 		line-height: 36px;
 		overflow: hidden;
+		background-color: #fff;
 		.nav {
 			.nav-item {
 				float: left;

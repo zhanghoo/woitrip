@@ -5,7 +5,7 @@
 				<carousel :carousels="carousels"></carousel>
 			</div>
 			<div class="search-wrapper">
-				<div class="search-box">
+				<div class="search-box search-box-hook">
 					<search></search>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 			<div class="article-wrapper">
-				<articlelist :articles="articles"></articlelist>
+				<articlelist :articles="articles" class="articlelist-i-hook"></articlelist>
 			</div>
 		</div>
 	</div>
@@ -99,30 +99,73 @@ export default {
 			this.carousels = res.data.carousels;
 			this.articles = res.data.articles;
 			this.$nextTick(() => {
-				if(!this.indexScroll) {
-					this.indexScroll = new BScroll(this.$refs.indexWrapper, {
-						click: true
-					});
-		    	} else {
-		    		this.indexScroll.refresh();
-		    	}
+				this._initNavScroll();
 			});
 		})
-		//监听当前实例上自定义事件 indexscroll.disable
-		this.$root.eventHub.$on('indexscroll.disable', () => {
+		//监听当前实例上自定义事件 index.indexscroll.disable
+		this.$root.eventHub.$on('index.indexscroll.disable', () => {
 			if(this.navScroll) {
 				return
 			} else {
+				this.indexScroll.scrollTo(0, 0, 0);
 				this.indexScroll.disable();
+				$('.search-box-hook').removeClass('top').css('top', '-25px');
 			}
 		});
-		this.$root.eventHub.$on('indexscroll.enable', () => {
+		this.$root.eventHub.$on('index.indexscroll.enable', () => {
 			if(this.navScroll) {
 				return
 			} else {
 				this.indexScroll.enable();
+				this.indexScroll.refresh();
+				$('.search-box-hook').removeClass('top').css('top', '-25px');
 			}
 		});
+	},
+	methods: {
+		_initNavScroll() {
+			if(!this.indexScroll) {
+				this.indexScroll = new BScroll(this.$refs.indexWrapper, {
+					click: true,
+					probeType: 3 // 监测实时滚动的位置
+				});
+
+				let _searchBox = $('.search-box-hook');
+				let _searchBoxTop = Math.round(_searchBox.offset().top);
+				let _searchBoxHeight = Math.round(_searchBox.outerHeight(true));//outerHeight(true)返回元素宽高 + padding + border + margin
+				let _articleList = $('.articlelist-i-hook');
+				let _articleListTop = Math.round(_articleList.offset().top);
+				let _articleNavTop = _articleListTop - _searchBoxHeight;
+				
+				this.indexScroll.on('scroll', (pos) => {
+		            // 拿到实时的y坐标
+		            let scrollY = Math.abs(Math.round(pos.y));
+					//这个判断是为了 不一直添加 top类
+		            if(scrollY >= _searchBoxTop && !_searchBox.hasClass('top')) {
+		            	_searchBox.addClass('top').css('top', `${_searchBoxTop}px`);
+		            } else if(scrollY >= _searchBoxTop) {
+		            	_searchBox.addClass('top').css('top', `${scrollY}px`);
+		            } else if(scrollY < _searchBoxTop && _searchBox.hasClass('top')) {
+		            	_searchBox.removeClass('top').css('top', '-25px');
+		            }
+
+		            console.log(_articleNavTop, scrollY);
+		            if(scrollY >= _articleNavTop && !_articleList.hasClass('top')) {
+		            	//触发 articlelist的事件
+		            	console.log(_articleNavTop)
+						this.$root.eventHub.$emit('articlelist.navSlide.addTop', _articleNavTop);
+		            } else if(scrollY >= _articleNavTop) {
+		            	console.log(_articleNavTop)
+		            	this.$root.eventHub.$emit('articlelist.navSlide.addTop', scrollY+_searchBoxHeight);
+		            } else if(scrollY < _articleNavTop && _articleList.hasClass('top')) {
+		            	this.$root.eventHub.$emit('articlelist.navSlide.removeTop', 0);
+		            }
+
+		        })
+	    	} else {
+	    		this.indexScroll.refresh();
+	    	}
+		}
 	},
 	components: {
 		carousel,
@@ -151,6 +194,12 @@ export default {
 				position: absolute;
 				top: -25px;
 				width: 100%;
+				transition: background-color .3s ease;
+				&.top {
+					position: fixed;
+					top: 0;
+					background-color: $mainColor;
+				}
 			}
 		}
 		.nav-wrapper {

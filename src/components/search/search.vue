@@ -107,12 +107,12 @@ export default {
 		inputPageShow() {
 			this.showFlag = true;
 			//触发 首页的 禁用 better-scroll事件
-			this.$root.eventHub.$emit('indexscroll.disable');
+			this.$root.eventHub.$emit('index.indexscroll.disable');
 		},
 		inputPageHide() {
 			this.showFlag = false;
 			//触发 启动的 禁用 better-scroll事件
-			this.$root.eventHub.$emit('indexscroll.enable');
+			this.$root.eventHub.$emit('index.indexscroll.enable');
 		},
 		clearHistory() {
 			//清空历史标记
