@@ -149,13 +149,10 @@ export default {
 		            	_searchBox.removeClass('top').css('top', '-25px');
 		            }
 
-		            console.log(_articleNavTop, scrollY);
 		            if(scrollY >= _articleNavTop && !_articleList.hasClass('top')) {
 		            	//触发 articlelist的事件
-		            	console.log(_articleNavTop)
 						this.$root.eventHub.$emit('articlelist.navSlide.addTop', _articleNavTop);
 		            } else if(scrollY >= _articleNavTop) {
-		            	console.log(_articleNavTop)
 		            	this.$root.eventHub.$emit('articlelist.navSlide.addTop', scrollY+_searchBoxHeight);
 		            } else if(scrollY < _articleNavTop && _articleList.hasClass('top')) {
 		            	this.$root.eventHub.$emit('articlelist.navSlide.removeTop', 0);

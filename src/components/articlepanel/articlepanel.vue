@@ -3,7 +3,7 @@
 		<div class="header">
 			<img class="bg" :src="article.bg">
 			<span class="category">{{article.category}}</span>
-			<el-dropdown trigger="click" @command="handleCommand">
+			<!-- <el-dropdown trigger="click" @command="handleCommand">
 				<span class="el-dropdown-link">
 					<i class="el-icon-arrow-down el-icon--right"></i>
 				</span>
@@ -13,7 +13,7 @@
 					<el-dropdown-item command="interest">不感兴趣</el-dropdown-item>
 					<el-dropdown-item command="report">举报</el-dropdown-item>
 				</el-dropdown-menu>
-			</el-dropdown>
+			</el-dropdown> -->
 		</div>
 		<div class="detail">
 			<div class="title">{{article.title}}</div>

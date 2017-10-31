@@ -108,11 +108,13 @@ export default {
 			this.showFlag = true;
 			//触发 首页的 禁用 better-scroll事件
 			this.$root.eventHub.$emit('index.indexscroll.disable');
+			this.$root.eventHub.$emit('articlelist.navSlide.removeTop', 0);
 		},
 		inputPageHide() {
 			this.showFlag = false;
 			//触发 启动的 禁用 better-scroll事件
 			this.$root.eventHub.$emit('index.indexscroll.enable');
+			this.$root.eventHub.$emit('articlelist.navSlide.removeTop', 0);
 		},
 		clearHistory() {
 			//清空历史标记

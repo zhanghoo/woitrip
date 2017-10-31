@@ -62,7 +62,6 @@ export default {
 		});
 		//监听当前实例上自定义事件 articlelist.navSlide.addTop
 		this.$root.eventHub.$on('articlelist.navSlide.addTop', (top) => {
-			console.log(`addTop--${top}`);
 			$('.articlelist-hook').addClass('top');
 			$('.nav-book').css('top', `${top}px`);
 		});
