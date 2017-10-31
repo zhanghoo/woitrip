@@ -1,12 +1,27 @@
 <template>
 	<div class="company">
-		company
+		<div class="header">
+			<pageheader :placeholder="placeholder">
+				<span slot="title">找同伴</span>
+			</pageheader>
+		</div>
+		<div class="content"></div>
 	</div>
 </template>
 
 <script>
+import pageheader from '@/components/pageheader/pageheader'
+
 export default {
-	name: 'company'
+	name: 'company',
+	data() {
+		return {
+			placeholder: '想去那了，看看有没有人一起去'
+		}
+	},
+	components: {
+		pageheader
+	}
 }
 </script>
 

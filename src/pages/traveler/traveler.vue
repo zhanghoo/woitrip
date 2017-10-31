@@ -1,12 +1,27 @@
 <template>
 	<div class="traveler">
-		traveler
+		<div class="header">
+			<pageheader :placeholder="placeholder">
+				<span slot="title">旅行家专栏</span>
+			</pageheader>
+		</div>
+		<div class="content"></div>
 	</div>
 </template>
 
 <script>
+import pageheader from '@/components/pageheader/pageheader'
+
 export default {
-	name: 'traveler'
+	name: 'traveler',
+	data() {
+		return {
+			placeholder: '找个当地人问问'
+		}
+	},
+	components: {
+		pageheader
+	}
 }
 </script>
 

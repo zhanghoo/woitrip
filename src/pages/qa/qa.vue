@@ -1,12 +1,27 @@
 <template>
 	<div class="qa">
-		qa
+		<div class="header">
+			<pageheader :placeholder="placeholder">
+				<span slot="title">问答</span>
+			</pageheader>
+		</div>
+		<div class="content"></div>
 	</div>
 </template>
 
 <script>
+import pageheader from '@/components/pageheader/pageheader'
+
 export default {
-	name: 'qa'
+	name: 'qa',
+	data() {
+		return {
+			placeholder: '求助~~'
+		}
+	},
+	components: {
+		pageheader
+	}
 }
 </script>
 

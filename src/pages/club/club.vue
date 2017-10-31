@@ -1,12 +1,27 @@
 <template>
 	<div class="club">
-		club
+		<div class="header">
+			<pageheader :placeholder="placeholder">
+				<span slot="title">找俱乐部</span>
+			</pageheader>
+		</div>
+		<div class="content"></div>
 	</div>
 </template>
 
 <script>
+import pageheader from '@/components/pageheader/pageheader'
+
 export default {
-	name: 'club'
+	name: 'club',
+	data() {
+		return {
+			placeholder: '想找个俱乐部，参加有趣的活动'
+		}
+	},
+	components: {
+		pageheader
+	}
 }
 </script>
 

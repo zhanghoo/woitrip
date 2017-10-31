@@ -125,6 +125,8 @@ export default {
 		focus: {
 			// 指令的定义
 			update: function (el) {
+				//清空
+				el.value = '';
 				// 聚焦元素
 				el.focus()
 			}

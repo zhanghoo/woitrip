@@ -32,25 +32,12 @@
 import icon from 'vue-awesome/components/Icon'
 import { mapGetters } from 'vuex'
 
-const RECOMMEND = 'recommend';
-const HOT = 'hot';
-const LATEST = 'latest';
-const SEASONAL = 'seasonal';
-const DOMESTIC = 'domestic';
-const ABROAD = 'abroad';
-const THEME = 'theme';
-const AROUND = 'around';
-
 export default {
 	name: 'articlepanel',
 	props: {
 		article: {
 			type: Object
 		},
-		// selectedType: {
-		// 	type: String,
-		// 	default: RECOMMEND
-		// }
 	},
 	computed: {
 		// ...mapGetters([
@@ -61,18 +48,14 @@ export default {
 			'selectedType'
 		]),
 		showFlag() {
+			//点击slide选择的类型 是否在 article.tag 中包含, 有则表示article属于这个tag下
 			return this.article.tag.some(this.inArticleTag);
 		}
 	},
-	// created() {
-	//	// 第一次测试用
-	// 	this.selectType('hot');
-	// 	console.log(this.selectedType);
-	// },
 	methods: {
-		handleCommand(command) {
-	    	console.log('click on item ' + command);
-        },
+		// handleCommand(command) {
+	 //    	console.log('click on item ' + command);
+  //       },
         inArticleTag(tag) {
         	return tag == this.selectedType;
         }

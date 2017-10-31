@@ -15,7 +15,6 @@
 /*
  * 安装 better-scroll npm install better-scroll --save
 */
-import BScroll from 'better-scroll'
 import articlepanel from '@/components/articlepanel/articlepanel'
 import slidenavbar from '@/components/slidenavbar/slidenavbar'
 import $ from 'jquery'
@@ -47,8 +46,6 @@ export default {
 					  {id: 5, type: 'abroad', name: '国外'},
 					  {id: 6, type: 'theme', name: '主题'},
 					  {id: 7, type: 'around', name: '周边'},],
-			articleList: [],
-			//selectedType: RECOMMEND
 		}
 	},
 	computed: {
@@ -72,8 +69,10 @@ export default {
 	methods: {
 		...mapMutations([
 			'selectType', //映射 this.selectType() 到 this.$store.commit('selectType')
-			// select: 'selectType' // 映射 select 到 this.$store.commit('selectType')
 		]),
+		// ...mapMutations({
+		// 	select: 'selectType' // 映射 select 到 this.$store.commit('selectType')
+		// }),
 	},
 	components: {
 		articlepanel,

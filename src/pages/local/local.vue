@@ -1,12 +1,27 @@
 <template>
 	<div class="local">
-		local
+		<div class="header">
+			<pageheader :placeholder="placeholder">
+				<span slot="title">找当地人</span>
+			</pageheader>
+		</div>
+		<div class="content"></div>
 	</div>
 </template>
 
 <script>
+import pageheader from '@/components/pageheader/pageheader'
+
 export default {
-	name: 'local'
+	name: 'local',
+	data() {
+		return {
+			placeholder: '找个当地人问问'
+		}
+	},
+	components: {
+		pageheader
+	}
 }
 </script>
 

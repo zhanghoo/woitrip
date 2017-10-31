@@ -15,12 +15,12 @@ export default {
 	name: 'slidenavbar',
 	props: {
 		navItem: {
-			type: Array
+			type: Array //列表nav分类item值
 		}
 	},
 	data() {
 		return {
-			navOnIndex: 0,
+			navOnIndex: 0,	//初始选项
 			hiddenPosX: 0, //nav 移动到左侧隐藏的位置
 			navOpt: 0, //nav 是 0 点击 还是 1 滑动
 		}
@@ -89,7 +89,6 @@ export default {
 
 			//初始化设置 store index模块中的 selectedType 值, 通过 调用store index 中方法进行设置
 			this.selectType(navList[index].getAttribute('data-type'));
-
 			this._setSlideBarStyle(navList[index]);
 		},
 	}
@@ -101,6 +100,12 @@ export default {
 @import "../../common/scss/index";
 
 .slidenavbar {
+	position: relative;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    background-color: #fff;
 	.nav {
 		.nav-item {
 			float: left;
