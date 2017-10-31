@@ -30,6 +30,7 @@
 
 <script>
 import icon from 'vue-awesome/components/Icon'
+import { mapGetters } from 'vuex'
 
 const RECOMMEND = 'recommend';
 const HOT = 'hot';
@@ -46,16 +47,28 @@ export default {
 		article: {
 			type: Object
 		},
-		selectedType: {
-			type: String,
-			default: RECOMMEND
-		}
+		// selectedType: {
+		// 	type: String,
+		// 	default: RECOMMEND
+		// }
 	},
 	computed: {
+		// ...mapGetters([
+		// 	'selectedType' // => selectedType: 'selectedType' 将state中的selectedType(右边位置)印射给左边的selectedType
+		// ]),
+		//mapGetters工具函数会将store中的getter映射到局部计算属性中
+		...mapGetters([
+			'selectedType'
+		]),
 		showFlag() {
 			return this.article.tag.some(this.inArticleTag);
 		}
 	},
+	// created() {
+	//	// 第一次测试用
+	// 	this.selectType('hot');
+	// 	console.log(this.selectedType);
+	// },
 	methods: {
 		handleCommand(command) {
 	    	console.log('click on item ' + command);
