@@ -7,7 +7,7 @@
 			<slidenavbar :navItem="navItem"></slidenavbar>
 		</div>
 		<div class="content">
-			<swiper :options="swiperOption" :not-next-tick="notNextTick" ref="guideSwiperRef">
+			<swiper :options="swiperOption" :not-next-tick="notNextTick" ref="guideSwiperRef" class="guide-swiper">
 				<swiper-slide v-for="guide in guides" :key="guide.id">
 					<guidelist :guide="guide"></guidelist>
 				</swiper-slide>
@@ -40,7 +40,7 @@ export default {
 			//notNextTick组件自有属性，设置为true，组件则不会通过NextTick来实例化swiper，可以在第一时间获取到swiper对象，设置为ture可以在刚加载遍获取swiper对象 在 标签中 还需要添加 :not-next-tick="notNextTick" 绑定
 			notNextTick: true,
 			swiperOption: {
-				autoHeight: true,
+				// autoHeight: true,
 				// //swiper 回调函数
 				// onSlideChangeEnd: swiper => {
 				// 	//在data里面访问不来 navItem 只能在其他地方实现 store selectedType 的变化 this.selectType()
@@ -116,12 +116,20 @@ export default {
 		position: fixed;
 		top: 0;
 		left: 0;
-		margin-top: 76px;
+		padding-top: 76px;
 		width: 100%;
 		height: 100%;
 		background: $panelColor;
-		overflow-y: auto;
-	    overflow-x: hidden;
+		overflow: hidden;
+		z-index: -1;
+		.guide-swiper {
+			position: relative;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
 	}
 }
 </style>

@@ -264,12 +264,92 @@
                         "destination": "北京",
                         "pageviews": 1000,
                         "guidesNum": 230
+                    },
+                    {
+                        "id": 7,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 8,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 9,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 10,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 11,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 12,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 13,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 14,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 15,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
+                    },
+                    {
+                        "id": 16,
+                        "title": "寻着秋天的足迹, 体验一下孤独的秋",
+                        "bg": "http://www.zhanghoo.com/woitrip/Uploads/Picture/travelerImg/traveler0.jpg",
+                        "destination": "北京",
+                        "pageviews": 1000,
+                        "guidesNum": 230
                     }
                 ]
             }
         },
         "Asia": {
-            "id": 0,
+            "id": 1,
             "name": "亚洲",
             "list": {
                 "hot": [
@@ -364,6 +444,46 @@
                         "guidesNum": 230
                     }
                 ]
+            }
+        },
+        "Europe": {
+            "id": 2,
+            "name": "欧洲",
+            "list": {
+                "hot": [],
+                "all": []
+            }
+        },
+        "NorthAmerica": {
+            "id": 3,
+            "name": "北美洲",
+            "list": {
+                "hot": [],
+                "all": []
+            }
+        },
+        "Oceania": {
+            "id": 4,
+            "name": "大洋洲",
+            "list": {
+                "hot": [],
+                "all": []
+            }
+        },
+        "Africa": {
+            "id": 5,
+            "name": "非洲",
+            "list": {
+                "hot": [],
+                "all": []
+            }
+        },
+        "SouthAmerica": {
+            "id": 6,
+            "name": "南美洲",
+            "list": {
+                "hot": [],
+                "all": []
             }
         }
     }
