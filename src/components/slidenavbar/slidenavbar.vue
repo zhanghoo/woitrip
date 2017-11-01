@@ -1,7 +1,7 @@
 <template>
 	<div class="slidenavbar" ref="slidenavbar">
 		<ul class="nav clearfix" ref="slideNavList">
-			<li class="nav-item nav-item-hook" :class="{'on': navOnIndex === index}" v-for="(item, index) in navItem" :key="item.id" @click="clickSelectType(index, $event)" :data-type="item.type">{{item.name}}</li>
+			<li class="nav-item nav-item-hook" :class="{'on': navOnIndex == index}" v-for="(item, index) in navItem" :key="item.id" @click="clickSelectType(index, $event)" :data-type="item.type">{{item.name}}</li>
 		</ul>
 		<div class="slide-bar" :class="{'click': navOpt === 0}" ref="slideNavBar"></div>
 	</div>
@@ -26,9 +26,18 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters([
-			'selectedType'
-		]),
+		...mapGetters({
+			selected: 'selectedType'
+		}),
+		//点击的nav 的序号
+	    navIndex() {
+	    	for(let item in this.navItem) {
+	    		if(this.navItem[item].type == this.selected) {
+	    			return item;
+	    		}
+	    	}
+	    	return 0;
+	    }
 	},
 	created() {
 		//接收数据
@@ -36,9 +45,19 @@ export default {
 			this._initSlideNavScroll();
 		});
 	},
+	watch: {
+		selected: function() {
+			this.navOnIndex = this.navIndex;
+			//这里 typeof(this.navOnIndex) -> string
+			this.navOpt = 0;//nav 点击操作
+			//根据 当前nav on 设置 slide-bar 的位置 和宽
+			let navList = this.$refs.slideNavList.getElementsByClassName('nav-item-hook');
+			this._setSlideBarStyle(navList[this.navIndex]);
+		}
+	},
 	methods: {
 		...mapMutations([
-			'selectType', // 映射 select 到 this.$store.commit('selectType') 出错??
+			'selectType', // 映射 select 到 this.$store.commit('selectType') 出错?? 注意使用别名的时候 是花括号 不是 方括号
 		]),
 		_initSlideNavScroll() {
 			if(this.slideNavScroll) {
@@ -83,6 +102,7 @@ export default {
 		},
 		clickSelectType(index, event) {
 			this.navOnIndex = index;
+			//这里 typeof(this.navOnIndex) -> number
 			this.navOpt = 0;//nav 点击操作
 			//根据 当前nav on 设置 slide-bar 的位置 和宽
 			let navList = this.$refs.slideNavList.getElementsByClassName('nav-item-hook');
