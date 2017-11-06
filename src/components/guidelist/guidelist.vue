@@ -37,7 +37,7 @@
 				<span class="text">还什么都没有, 赶紧来写一篇吧~~</span>
 			</div>
 		</swiper-slide>
-		<div class="box-swiper-scrollbar" slot="scrollbar"></div>
+		<div class="swiper-scrollbar box-swiper-scrollbar" slot="scrollbar"></div>
 	</swiper>
 </template>
 
