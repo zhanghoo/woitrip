@@ -14,6 +14,8 @@ import club from '@/pages/club/club'
 import traveler from '@/pages/traveler/traveler'
 import group from '@/pages/group/group'
 import qa from '@/pages/qa/qa'
+import expmall from '@/pages/expmall/expmall'
+import souvenirmall from '@/pages/souvenirmall/souvenirmall'
 import more from '@/pages/more/more'
 
 export default new Router({
@@ -66,6 +68,14 @@ export default new Router({
 		{
 			path: '/qa',
 			component: qa
+		},
+		{
+			path: '/expmall',
+			component: expmall
+		},
+		{
+			path: '/souvenirmall',
+			component: souvenirmall
 		},
 		{
 			path: '/more',

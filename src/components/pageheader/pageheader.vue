@@ -1,7 +1,11 @@
 <template>
 	<div class="pageheader">
 		<div class="header">
-			<span class="left-icon" @click="back"><icon name="chevron-left"></icon></span>
+			<slot name="headerLeft">
+				<router-link :to='page' class="back">
+					<span class="left-icon"><icon name="chevron-left"></icon></span>
+				</router-link>
+			</slot>
 			<div class="title">
 				<!-- title 插槽 -->
 				<slot name="title"></slot>
@@ -39,6 +43,10 @@ export default {
 		placeholder: {
 			type: String,
 			default: '请输入要搜索的内容'
+		},
+		page: {
+			type: String,
+			default: 'index'
 		}
 	},
 	data() {
@@ -52,10 +60,6 @@ export default {
 		},
 		inputPageHide() {
 			this.showFlag = false;
-		},
-		back() {
-			//返回首页
-			this.$router.push('index');
 		}
 	},
 	directives: {
@@ -94,6 +98,7 @@ export default {
 			.fa-icon {
 				position: relative;
 				top: 4px;
+				color: #fff;
 			}
 		}
 		.title {
